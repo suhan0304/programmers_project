@@ -9,6 +9,14 @@ def get_cds(n):
     return cnt
 
 def solution(e, starts):
-    for num in range(starts,e) :
     answer = []
+    for i in range(len(starts)) :
+        max_n = 0
+        flag = 0
+        for j in range(starts[i],e+1) :
+            #print(j)
+            if get_cds(j) > max_n :
+                max_n = get_cds(j)
+                flag = j
+        answer.append(flag)
     return answer
