@@ -1,15 +1,28 @@
-
-
+#재귀 함수
 def check_binary_Tree(b, d) :
-    #재귀 함수
+    #깊이 == 1
+    if d==1 :
+        return 0
+    
     #원소의 갯수
+    n = (2**d)-1
+    root_n = n//2
+    left_root_n = root_n - (root_n//2+1)
+    right_root_n = root_n + (root_n//2+1)
+    #print(left_root_n,root_n,right_root_n)
     
-    root = b[len(b)//2]
-    left_root = b[len(b)//2]
-    #case 1. 루트 = 0 and 자식 = 1 만들 수 없음 -> 0을 리턴
+    root = b[root_n]
+    left_root = b[left_root_n]
+    right_root = b[right_root_n]
     
+    #case 1. 루트 = 0 and 자식 = 1 만들 수 없음 -> 이진트리 생성 불가
+    if root == 0 and left_root == 1 or root == 0 and right_root == 1 :
+        return -1
     #case 2. 루트 = 1 and 자식 = 0이든 1든 상관 없음 -> 왼쪽/오른쪽 서브트리 쪼개기
-    
+    elif root == 1 :
+        #깊이는 1이 줄어듬
+        return check_binary_Tree(b[:root_n-1],d-1)
+        return check_binary_Tree(b[root_n+1:],d-1)
     
 
 def solution(numbers):
@@ -36,7 +49,7 @@ def solution(numbers):
         for i in range((2**d)-1-len(b)) :
             b = '0' + b
         
-        check_binary_Tree(b, d) 
+        check_binary_Tree(b, d)
     
     return answer
 
