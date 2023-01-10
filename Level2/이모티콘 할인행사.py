@@ -14,6 +14,16 @@ def solution(users, emoticons):
         # └ 32%, 28% 그러면 테스트를 해야되는게 20, 30, 40% 중 20%는 테스트할 필요가 없음 = 가입자가 0명이 됨
         if math.ceil(u[0]/10) * 10 > max_discount : max_discount = math.ceil(u[0]/10) * 10
         if math.ceil(u[0]/10) * 10 < min_discount : min_discount = math.ceil(u[0]/10) * 10
-        
-    print(max_discount, min_discount)
+    
+    #최소 할인율 ~ 최대할인율까지 각 이모티콘 별 모든 할인율 조합
+    com = []
+    stack = [[]]
+    while len(stack) > 0 :
+        simul = stack.pop() 
+        if len(simul) >= len(emoticons) :
+            com.append(simul)
+            continue
+        for d in range(min_discount, max_discount+10,10) :
+            stack.append(simul + [d])
+    #print(max_discount, min_discount)
     return answer
