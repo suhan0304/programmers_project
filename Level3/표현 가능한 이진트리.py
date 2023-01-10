@@ -1,3 +1,29 @@
+def check_binary_tree(b, d) :
+    
+    root_n = ((2**d)-1)//2
+    left_root_n = root_n//2
+    right_root_n = (root_n+((2**d)-1))//2
+    
+    root = int(b[root_n])
+    left_root = int(b[left_root_n])
+    right_root = int(b[right_root_n])
+     
+    print(b,"/ d =",d)
+    print("left_root_n=",left_root_n,"/ root_n=",root_n,"/ right_root_n=",right_root_n)
+    print("left_root=",left_root,"/ root=",root,"/ right_root=",right_root)
+    
+    if d == 1 or (d==2 and root == 1):
+        return 1
+    
+    if root == 0 :
+        if left_root == 1 or right_root == 1 :
+            return 0
+    elif root == 1 :
+        if check_binary_tree(b[:root_n],d-1) == 1 and check_binary_tree(b[root_n+1:],d-1) == 1:
+            return 1
+        else :
+            return 0
+
 def solution(numbers):
     answer = []
 
@@ -21,8 +47,11 @@ def solution(numbers):
         #갯수 맞추기 위에 맨앞에 0 추가
         for i in range((2**d)-1-len(b)) :
             b = '0' + b
-        print(b)
             
+        
+        answer.append(check_binary_tree(b,d))
+        #print("check_binary_tree",answer)
+        
     return answer
 
     
