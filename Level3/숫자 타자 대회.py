@@ -7,4 +7,5 @@ def solution(numbers):
 
     #각 왼손 오른손 별로 눌러야하는 버튼 사이의 거리를 구한다
     #예외의 경우를 잘 생각해봐야 할듯
+    #거리가 같은 경우?
     return answer
